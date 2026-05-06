@@ -7,4 +7,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Catalyst" Version="26.3.60" />
+    <PackageReference Include="Catalyst.Models.English" Version="1.0.30952" />
+    <PackageReference Include="Catalyst.Models.Ukrainian" Version="1.0.30952" />
+    <PackageReference Include="dotnet-stop-words" Version="1.1.0" />
+    <PackageReference Include="NEST" Version="7.17.5" />
+    <PackageReference Include="WeCantSpell.Hunspell" Version="7.0.1" />
+  </ItemGroup>
+
 </Project>
