@@ -1,6 +1,6 @@
 ﻿namespace CourseworkTPO
 {
-    public class TfIdfSequential
+    public static class TfIdfSequential
     {
         public static Dictionary<string, double>[] ComputeVectors(string[][] documents)
         {
