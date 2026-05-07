@@ -80,5 +80,28 @@
 
             Console.WriteLine($"Створено файл {filePath} із {numberOfParagraphs} документами.");
         }
+
+        public static string[] GenerateTestDataset(int numberOfDocuments)
+        {
+            var topics = new List<string>(_topicSentences.Keys);
+
+            var dataset = new string[numberOfDocuments];
+
+            for (int i = 0; i < numberOfDocuments; i++)
+            {
+                string selectedTopic = topics[_random.Next(topics.Count)];
+                string[] sentencesPool = _topicSentences[selectedTopic];
+
+                int sentencesInParagraph = _random.Next(3, 6);
+
+                var paragraphSentences = sentencesPool
+                    .OrderBy(x => _random.Next())
+                    .Take(sentencesInParagraph);
+
+                dataset[i] = string.Join(" ", paragraphSentences);
+            }
+
+            return dataset;
+        }
     }
 }
