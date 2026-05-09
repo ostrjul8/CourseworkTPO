@@ -4,7 +4,7 @@ namespace CourseworkTPO
 {
     public static class TfIdfParallel
     {
-        public static Dictionary<string, double>[] ComputeVectors(string[][] documents)
+        public static Dictionary<string, double>[] ComputeVectors(string[][] documents, int maxThreads)
         {
             int documentsCount = documents.Length;
 
@@ -12,7 +12,12 @@ namespace CourseworkTPO
 
             var documentFrequency = new ConcurrentDictionary<string, int>();
 
-            Parallel.For(0, documentsCount, i =>
+            var options = new ParallelOptions
+            {
+                MaxDegreeOfParallelism = maxThreads
+            };
+
+            Parallel.For(0, documentsCount, options, i =>
             {
                 var currentDocTf = new Dictionary<string, int>();
                 string[] words = documents[i];
@@ -38,7 +43,7 @@ namespace CourseworkTPO
 
             var tfIdfVectors = new Dictionary<string, double>[documentsCount];
 
-            Parallel.For(0, documentsCount, i =>
+            Parallel.For(0, documentsCount, options, i =>
             {
                 tfIdfVectors[i] = new Dictionary<string, double>();
                 var currentDocTf = termFrequency[i];
